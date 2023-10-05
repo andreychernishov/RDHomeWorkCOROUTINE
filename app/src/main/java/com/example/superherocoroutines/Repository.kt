@@ -1,10 +1,8 @@
 package com.example.superherocoroutines
 
-import retrofit2.Retrofit
-
-class Repository(private val apiInterface: ApiInterface) {
-    suspend fun getCurretnMeme(): MutableList<JsData>{
-
+class Repository(private val repoClient: ApiClient) {
+    suspend fun getCurrentMeme(): MutableList<JsData>{
+        val apiInterface = repoClient.client.create(ApiInterface::class.java)
         return apiInterface.getMemes()
     }
 }
